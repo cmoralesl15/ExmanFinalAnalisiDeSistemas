@@ -79,7 +79,7 @@
     <Compile Include="Ingreso.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Baloncesto\Jugador.cs" />
+    <Compile Include="Futbol\Jugador.cs" />
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -129,18 +129,24 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Analisis\Diagramas.pptx" />
     <None Include="App.config" />
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Baloncesto\ClassDiagram1.cd" />
+    <None Include="Futbol\ClassDiagram1.cd" />
     <None Include="Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Analisis\ClassDiagram1.png" />
+    <Content Include="Analisis\Diagrama en blanco.png" />
+    <Content Include="Analisis\EntityDesignerDiagram.bmp" />
+    <Content Include="Analisis\Imagen 2.png" />
+    <Content Include="Analisis\Imagen1.png" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SistemasUmg.Jugador">
+    <Position X="0.5" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAQAAAAAYIgAIQAgAAIEAAAERCAAEAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Baloncesto\Jugador.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemasUmg.Partido">
+    <Position X="4" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAIAAAAAIAAAAAAAAAAIAAAkFgAAAAgCAAAACAA=</HashCode>
+      <FileName>Baloncesto\Jugador.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemasUmg.Equipo">
+    <Position X="2.25" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAkAAAgEAAAACAAAgIAAAAAAEAAAAAACBAkIAAA=</HashCode>
+      <FileName>Baloncesto\Jugador.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Partido" />
+      <Property Name="Partido1" />
+      <Property Name="Jugador" />
+      <Property Name="Tecnico" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SistemasUmg.Liga">
+    <Position X="11.5" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAACAAAgAAAAAAAAAAgAEAAIAgAAAA=</HashCode>
+      <FileName>Baloncesto\Jugador.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Equipo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SistemasUmg.Posicion">
+    <Position X="6.5" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAgAAAAAAAAAACAAAAQAMAAQA=</HashCode>
+      <FileName>Baloncesto\Jugador.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Jugador" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SistemasUmg.Arbitro">
+    <Position X="11.5" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAgAEAIACIAAIAAgAAAEAAAAQCAAAAAAAAACAAAgAAI=</HashCode>
+      <FileName>Baloncesto\Jugador.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Partido" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SistemasUmg.Tecnico">
+    <Position X="9" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>GAAAAAIAAIAAYAAgAAAEgAAAQCAAEgAgAAAACAAAAAI=</HashCode>
+      <FileName>Baloncesto\Jugador.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Equipo" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

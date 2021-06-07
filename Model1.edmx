@@ -1,0 +1,1785 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AnalisisDBCesarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Articulo">
+          <Key>
+            <PropertyRef Name="idArticulo" />
+          </Key>
+          <Property Name="idArticulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCategoria" Type="int" />
+          <Property Name="codigo" Type="varchar" MaxLength="50" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="precio" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="stock" Type="int" />
+          <Property Name="descripcion" Type="varchar" MaxLength="256" />
+          <Property Name="condicion" Type="bit" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="descripcion" Type="varchar" MaxLength="256" />
+          <Property Name="condicion" Type="bit" />
+        </EntityType>
+        <EntityType Name="Comprobante">
+          <Key>
+            <PropertyRef Name="idComprobante" />
+          </Key>
+          <Property Name="idComprobante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTipoComprobante" Type="int" />
+          <Property Name="serie" Type="varchar" MaxLength="7" />
+          <Property Name="numero" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="DetalleIngreso">
+          <Key>
+            <PropertyRef Name="idDetalleIngreso" />
+          </Key>
+          <Property Name="idDetalleIngreso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idIngreso" Type="int" />
+          <Property Name="idArticulo" Type="int" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="total" Type="decimal" Precision="11" Scale="2" />
+        </EntityType>
+        <EntityType Name="DetalleVenta">
+          <Key>
+            <PropertyRef Name="idDetalleVenta" />
+          </Key>
+          <Property Name="idDetalleVenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idVenta" Type="int" />
+          <Property Name="idArticulo" Type="int" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="total" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="descuento" Type="decimal" Precision="11" Scale="2" />
+        </EntityType>
+        <EntityType Name="Documento">
+          <Key>
+            <PropertyRef Name="idDocumento" />
+          </Key>
+          <Property Name="idDocumento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTipoDocumento" Type="int" />
+          <Property Name="numero" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="EstadoIngreso">
+          <Key>
+            <PropertyRef Name="idEstadoIngreso" />
+          </Key>
+          <Property Name="idEstadoIngreso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EstadoVenta">
+          <Key>
+            <PropertyRef Name="idEstadoVenta" />
+          </Key>
+          <Property Name="idEstadoVenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Ingreso">
+          <Key>
+            <PropertyRef Name="idIngreso" />
+          </Key>
+          <Property Name="idIngreso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idProveedor" Type="int" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="idComprobante" Type="int" />
+          <Property Name="fechaHora" Type="datetime" />
+          <Property Name="impuesto" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="total" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="idEstadoIngreso" Type="int" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="idPersona" />
+          </Key>
+          <Property Name="idPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTipoPersona" Type="int" />
+          <Property Name="primerNombre" Type="varchar" MaxLength="20" />
+          <Property Name="segundoNombre" Type="varchar" MaxLength="20" />
+          <Property Name="primerApellido" Type="varchar" MaxLength="20" />
+          <Property Name="segundoApellido" Type="varchar" MaxLength="20" />
+          <Property Name="idDocumento" Type="int" />
+          <Property Name="direccion" Type="varchar" MaxLength="70" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="idRol" />
+          </Key>
+          <Property Name="idRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="descripcion" Type="varchar" MaxLength="256" />
+          <Property Name="condicion" Type="bit" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TipoComprobante">
+          <Key>
+            <PropertyRef Name="idTipoComprobante" />
+          </Key>
+          <Property Name="idTipoComprobante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TipoDocumento">
+          <Key>
+            <PropertyRef Name="idTipoDocumento" />
+          </Key>
+          <Property Name="idTipoDocumento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TipoPersona">
+          <Key>
+            <PropertyRef Name="idTipoPersona" />
+          </Key>
+          <Property Name="idTipoPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idRol" Type="int" />
+          <Property Name="primerNombre" Type="varchar" MaxLength="20" />
+          <Property Name="segundoNombre" Type="varchar" MaxLength="20" />
+          <Property Name="primerApellido" Type="varchar" MaxLength="20" />
+          <Property Name="segundoApellido" Type="varchar" MaxLength="20" />
+          <Property Name="idDocumento" Type="int" />
+          <Property Name="direccion" Type="varchar" MaxLength="70" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="passwordHash" Type="varbinary" MaxLength="1" />
+          <Property Name="passwordSal" Type="varbinary" MaxLength="1" />
+          <Property Name="condicion" Type="bit" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="idVenta" />
+          </Key>
+          <Property Name="idVenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCliente" Type="int" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="idComprobante" Type="int" />
+          <Property Name="fechaHora" Type="datetime" />
+          <Property Name="impuesto" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="total" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="idEstadoVenta" Type="int" />
+        </EntityType>
+        <Association Name="FK_Comprobante_TipoComprobante">
+          <End Role="TipoComprobante" Type="Self.TipoComprobante" Multiplicity="0..1" />
+          <End Role="Comprobante" Type="Self.Comprobante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoComprobante">
+              <PropertyRef Name="idTipoComprobante" />
+            </Principal>
+            <Dependent Role="Comprobante">
+              <PropertyRef Name="idTipoComprobante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Documento_TipoDocumento">
+          <End Role="TipoDocumento" Type="Self.TipoDocumento" Multiplicity="0..1" />
+          <End Role="Documento" Type="Self.Documento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDocumento">
+              <PropertyRef Name="idTipoDocumento" />
+            </Principal>
+            <Dependent Role="Documento">
+              <PropertyRef Name="idTipoDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ingreso_Comprobante">
+          <End Role="Comprobante" Type="Self.Comprobante" Multiplicity="0..1" />
+          <End Role="Ingreso" Type="Self.Ingreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comprobante">
+              <PropertyRef Name="idComprobante" />
+            </Principal>
+            <Dependent Role="Ingreso">
+              <PropertyRef Name="idComprobante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ingreso_EstadoIngreso">
+          <End Role="EstadoIngreso" Type="Self.EstadoIngreso" Multiplicity="0..1" />
+          <End Role="Ingreso" Type="Self.Ingreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoIngreso">
+              <PropertyRef Name="idEstadoIngreso" />
+            </Principal>
+            <Dependent Role="Ingreso">
+              <PropertyRef Name="idEstadoIngreso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_Documento">
+          <End Role="Documento" Type="Self.Documento" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documento">
+              <PropertyRef Name="idDocumento" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="idDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_articulo_tbl_categoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="Articulo">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detalleIngreso_tbl_articulo">
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="0..1" />
+          <End Role="DetalleIngreso" Type="Self.DetalleIngreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articulo">
+              <PropertyRef Name="idArticulo" />
+            </Principal>
+            <Dependent Role="DetalleIngreso">
+              <PropertyRef Name="idArticulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detalleIngreso_tbl_ingreso">
+          <End Role="Ingreso" Type="Self.Ingreso" Multiplicity="0..1" />
+          <End Role="DetalleIngreso" Type="Self.DetalleIngreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingreso">
+              <PropertyRef Name="idIngreso" />
+            </Principal>
+            <Dependent Role="DetalleIngreso">
+              <PropertyRef Name="idIngreso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detalleVenta_tbl_articulo">
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="0..1" />
+          <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articulo">
+              <PropertyRef Name="idArticulo" />
+            </Principal>
+            <Dependent Role="DetalleVenta">
+              <PropertyRef Name="idArticulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detalleVenta_tbl_venta">
+          <End Role="Venta" Type="Self.Venta" Multiplicity="0..1" />
+          <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="idVenta" />
+            </Principal>
+            <Dependent Role="DetalleVenta">
+              <PropertyRef Name="idVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ingreso_tbl_persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Ingreso" Type="Self.Ingreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="idPersona" />
+            </Principal>
+            <Dependent Role="Ingreso">
+              <PropertyRef Name="idProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ingreso_tbl_usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Ingreso" Type="Self.Ingreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Ingreso">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_persona_tipoPersona">
+          <End Role="TipoPersona" Type="Self.TipoPersona" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPersona">
+              <PropertyRef Name="idTipoPersona" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="idTipoPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_usuario_tbl_rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="idRol" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_venta_tbl_persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="idPersona" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_venta_tbl_usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Documento">
+          <End Role="Documento" Type="Self.Documento" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documento">
+              <PropertyRef Name="idDocumento" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Venta_Comprobante">
+          <End Role="Comprobante" Type="Self.Comprobante" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comprobante">
+              <PropertyRef Name="idComprobante" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="idComprobante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Venta_EstadoVenta">
+          <End Role="EstadoVenta" Type="Self.EstadoVenta" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoVenta">
+              <PropertyRef Name="idEstadoVenta" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="idEstadoVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_delete_articulo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idArticulo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_delete_categoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idCategoria" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_delete_rol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idRol" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_delete_usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_insert_articulo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idCategoria" Type="int" Mode="In" />
+          <Parameter Name="codigo" Type="varchar" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="precioVenta" Type="decimal" Mode="In" />
+          <Parameter Name="stock" Type="int" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="condicion" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_insert_categoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="condicion" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_insert_detalleIngreso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idIngreso" Type="int" Mode="In" />
+          <Parameter Name="idArticulo" Type="int" Mode="In" />
+          <Parameter Name="cantidad" Type="int" Mode="In" />
+          <Parameter Name="precioDetalle" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="sp_insert_detalleVenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idVenta" Type="int" Mode="In" />
+          <Parameter Name="idArticulo" Type="int" Mode="In" />
+          <Parameter Name="cantidad" Type="int" Mode="In" />
+          <Parameter Name="precioDetalleVenta" Type="decimal" Mode="In" />
+          <Parameter Name="descuento" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="sp_insert_ingreso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idProveedor" Type="int" Mode="In" />
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+          <Parameter Name="tipoComprobante" Type="varchar" Mode="In" />
+          <Parameter Name="serieComprobante" Type="varchar" Mode="In" />
+          <Parameter Name="numComprobante" Type="varchar" Mode="In" />
+          <Parameter Name="fechaHora" Type="datetime" Mode="In" />
+          <Parameter Name="impuesto" Type="decimal" Mode="In" />
+          <Parameter Name="total" Type="decimal" Mode="In" />
+          <Parameter Name="estado" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_insert_persona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tipoPersona" Type="varchar" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="tipoDocumento" Type="varchar" Mode="In" />
+          <Parameter Name="numDocumento" Type="varchar" Mode="In" />
+          <Parameter Name="direccion" Type="varchar" Mode="In" />
+          <Parameter Name="telefono" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_insert_rol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="condicion" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_insert_usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idRol" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="tipoDocumento" Type="varchar" Mode="In" />
+          <Parameter Name="numDocumento" Type="varchar" Mode="In" />
+          <Parameter Name="direccion" Type="varchar" Mode="In" />
+          <Parameter Name="telefono" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="passwordHash" Type="varbinary" Mode="In" />
+          <Parameter Name="passwordSal" Type="varbinary" Mode="In" />
+          <Parameter Name="condicion" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_insert_venta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idCliente" Type="int" Mode="In" />
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+          <Parameter Name="tipoComprobante" Type="varchar" Mode="In" />
+          <Parameter Name="serieComprobante" Type="varchar" Mode="In" />
+          <Parameter Name="numComprobante" Type="varchar" Mode="In" />
+          <Parameter Name="fechaHora" Type="datetime" Mode="In" />
+          <Parameter Name="impuesto" Type="decimal" Mode="In" />
+          <Parameter Name="total" Type="decimal" Mode="In" />
+          <Parameter Name="estado" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_read_articulo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idArticulo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_read_categoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idcategoria" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_read_detalleIngreso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idDetalleIngreso" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_read_detalleVenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idDetalleVenta" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_read_ingreso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idIngreso" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_read_persona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idPersona" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_read_rol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idRol" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_read_usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_read_venta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idVenta" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_update_articulo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idArticulo" Type="int" Mode="In" />
+          <Parameter Name="idCategoria" Type="int" Mode="In" />
+          <Parameter Name="codigo" Type="varchar" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="precioVenta" Type="decimal" Mode="In" />
+          <Parameter Name="stock" Type="int" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="condicion" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_update_categoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idCategoria" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="condicion" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_update_detalleIngreso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idDetalleIngreso" Type="int" Mode="In" />
+          <Parameter Name="idIngreso" Type="int" Mode="In" />
+          <Parameter Name="idArticulo" Type="int" Mode="In" />
+          <Parameter Name="cantidad" Type="int" Mode="In" />
+          <Parameter Name="precioDetalle" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="sp_update_detalleVenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idDetalleVenta" Type="int" Mode="In" />
+          <Parameter Name="idVenta" Type="int" Mode="In" />
+          <Parameter Name="idArticulo" Type="int" Mode="In" />
+          <Parameter Name="cantidad" Type="int" Mode="In" />
+          <Parameter Name="precioDetalleVenta" Type="decimal" Mode="In" />
+          <Parameter Name="descuento" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="sp_update_ingreso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idIngreso" Type="int" Mode="In" />
+          <Parameter Name="idProveedor" Type="int" Mode="In" />
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+          <Parameter Name="tipoComprobante" Type="varchar" Mode="In" />
+          <Parameter Name="serieComprobante" Type="varchar" Mode="In" />
+          <Parameter Name="numComprobante" Type="varchar" Mode="In" />
+          <Parameter Name="fechaHora" Type="datetime" Mode="In" />
+          <Parameter Name="impuesto" Type="decimal" Mode="In" />
+          <Parameter Name="total" Type="decimal" Mode="In" />
+          <Parameter Name="estado" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_update_persona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idPersona" Type="int" Mode="In" />
+          <Parameter Name="tipoPersona" Type="varchar" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="tipoDocumento" Type="varchar" Mode="In" />
+          <Parameter Name="numDocumento" Type="varchar" Mode="In" />
+          <Parameter Name="direccion" Type="varchar" Mode="In" />
+          <Parameter Name="telefono" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_update_rol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idRol" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="condicion" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_update_usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+          <Parameter Name="idRol" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="tipoDocumento" Type="varchar" Mode="In" />
+          <Parameter Name="numDocumento" Type="varchar" Mode="In" />
+          <Parameter Name="direccion" Type="varchar" Mode="In" />
+          <Parameter Name="telefono" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="passwordHash" Type="varbinary" Mode="In" />
+          <Parameter Name="passwordSal" Type="varbinary" Mode="In" />
+          <Parameter Name="condicion" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_update_venta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idVenta" Type="int" Mode="In" />
+          <Parameter Name="idCliente" Type="int" Mode="In" />
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+          <Parameter Name="tipoComprobante" Type="varchar" Mode="In" />
+          <Parameter Name="serieComprobante" Type="varchar" Mode="In" />
+          <Parameter Name="numComprobante" Type="varchar" Mode="In" />
+          <Parameter Name="fechaHora" Type="datetime" Mode="In" />
+          <Parameter Name="impuesto" Type="decimal" Mode="In" />
+          <Parameter Name="total" Type="decimal" Mode="In" />
+          <Parameter Name="estado" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="AnalisisDBCesarModelStoreContainer">
+          <EntitySet Name="Articulo" EntityType="Self.Articulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comprobante" EntityType="Self.Comprobante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetalleIngreso" EntityType="Self.DetalleIngreso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetalleVenta" EntityType="Self.DetalleVenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Documento" EntityType="Self.Documento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstadoIngreso" EntityType="Self.EstadoIngreso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstadoVenta" EntityType="Self.EstadoVenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ingreso" EntityType="Self.Ingreso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoComprobante" EntityType="Self.TipoComprobante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoDocumento" EntityType="Self.TipoDocumento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoPersona" EntityType="Self.TipoPersona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Venta" EntityType="Self.Venta" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Comprobante_TipoComprobante" Association="Self.FK_Comprobante_TipoComprobante">
+            <End Role="TipoComprobante" EntitySet="TipoComprobante" />
+            <End Role="Comprobante" EntitySet="Comprobante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Documento_TipoDocumento" Association="Self.FK_Documento_TipoDocumento">
+            <End Role="TipoDocumento" EntitySet="TipoDocumento" />
+            <End Role="Documento" EntitySet="Documento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ingreso_Comprobante" Association="Self.FK_Ingreso_Comprobante">
+            <End Role="Comprobante" EntitySet="Comprobante" />
+            <End Role="Ingreso" EntitySet="Ingreso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ingreso_EstadoIngreso" Association="Self.FK_Ingreso_EstadoIngreso">
+            <End Role="EstadoIngreso" EntitySet="EstadoIngreso" />
+            <End Role="Ingreso" EntitySet="Ingreso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_Documento" Association="Self.FK_Persona_Documento">
+            <End Role="Documento" EntitySet="Documento" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_articulo_tbl_categoria" Association="Self.FK_tbl_articulo_tbl_categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Articulo" EntitySet="Articulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detalleIngreso_tbl_articulo" Association="Self.FK_tbl_detalleIngreso_tbl_articulo">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="DetalleIngreso" EntitySet="DetalleIngreso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detalleIngreso_tbl_ingreso" Association="Self.FK_tbl_detalleIngreso_tbl_ingreso">
+            <End Role="Ingreso" EntitySet="Ingreso" />
+            <End Role="DetalleIngreso" EntitySet="DetalleIngreso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detalleVenta_tbl_articulo" Association="Self.FK_tbl_detalleVenta_tbl_articulo">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detalleVenta_tbl_venta" Association="Self.FK_tbl_detalleVenta_tbl_venta">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ingreso_tbl_persona" Association="Self.FK_tbl_ingreso_tbl_persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Ingreso" EntitySet="Ingreso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ingreso_tbl_usuario" Association="Self.FK_tbl_ingreso_tbl_usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Ingreso" EntitySet="Ingreso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_persona_tipoPersona" Association="Self.FK_tbl_persona_tipoPersona">
+            <End Role="TipoPersona" EntitySet="TipoPersona" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_usuario_tbl_rol" Association="Self.FK_tbl_usuario_tbl_rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_venta_tbl_persona" Association="Self.FK_tbl_venta_tbl_persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_venta_tbl_usuario" Association="Self.FK_tbl_venta_tbl_usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Documento" Association="Self.FK_Usuario_Documento">
+            <End Role="Documento" EntitySet="Documento" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Venta_Comprobante" Association="Self.FK_Venta_Comprobante">
+            <End Role="Comprobante" EntitySet="Comprobante" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Venta_EstadoVenta" Association="Self.FK_Venta_EstadoVenta">
+            <End Role="EstadoVenta" EntitySet="EstadoVenta" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AnalisisDBCesarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Articulo">
+          <Key>
+            <PropertyRef Name="idArticulo" />
+          </Key>
+          <Property Name="idArticulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCategoria" Type="Int32" />
+          <Property Name="codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="stock" Type="Int32" />
+          <Property Name="descripcion" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="condicion" Type="Boolean" />
+          <NavigationProperty Name="Categoria" Relationship="Self.FK_tbl_articulo_tbl_categoria" FromRole="Articulo" ToRole="Categoria" />
+          <NavigationProperty Name="DetalleIngreso" Relationship="Self.FK_tbl_detalleIngreso_tbl_articulo" FromRole="Articulo" ToRole="DetalleIngreso" />
+          <NavigationProperty Name="DetalleVenta" Relationship="Self.FK_tbl_detalleVenta_tbl_articulo" FromRole="Articulo" ToRole="DetalleVenta" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="condicion" Type="Boolean" />
+          <NavigationProperty Name="Articulo" Relationship="Self.FK_tbl_articulo_tbl_categoria" FromRole="Categoria" ToRole="Articulo" />
+        </EntityType>
+        <EntityType Name="Comprobante">
+          <Key>
+            <PropertyRef Name="idComprobante" />
+          </Key>
+          <Property Name="idComprobante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTipoComprobante" Type="Int32" />
+          <Property Name="serie" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="numero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TipoComprobante" Relationship="Self.FK_Comprobante_TipoComprobante" FromRole="Comprobante" ToRole="TipoComprobante" />
+          <NavigationProperty Name="Ingreso" Relationship="Self.FK_Ingreso_Comprobante" FromRole="Comprobante" ToRole="Ingreso" />
+          <NavigationProperty Name="Venta" Relationship="Self.FK_Venta_Comprobante" FromRole="Comprobante" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="DetalleIngreso">
+          <Key>
+            <PropertyRef Name="idDetalleIngreso" />
+          </Key>
+          <Property Name="idDetalleIngreso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idIngreso" Type="Int32" />
+          <Property Name="idArticulo" Type="Int32" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="total" Type="Decimal" Precision="11" Scale="2" />
+          <NavigationProperty Name="Articulo" Relationship="Self.FK_tbl_detalleIngreso_tbl_articulo" FromRole="DetalleIngreso" ToRole="Articulo" />
+          <NavigationProperty Name="Ingreso" Relationship="Self.FK_tbl_detalleIngreso_tbl_ingreso" FromRole="DetalleIngreso" ToRole="Ingreso" />
+        </EntityType>
+        <EntityType Name="DetalleVenta">
+          <Key>
+            <PropertyRef Name="idDetalleVenta" />
+          </Key>
+          <Property Name="idDetalleVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idVenta" Type="Int32" />
+          <Property Name="idArticulo" Type="Int32" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="total" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="descuento" Type="Decimal" Precision="11" Scale="2" />
+          <NavigationProperty Name="Articulo" Relationship="Self.FK_tbl_detalleVenta_tbl_articulo" FromRole="DetalleVenta" ToRole="Articulo" />
+          <NavigationProperty Name="Venta" Relationship="Self.FK_tbl_detalleVenta_tbl_venta" FromRole="DetalleVenta" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Documento">
+          <Key>
+            <PropertyRef Name="idDocumento" />
+          </Key>
+          <Property Name="idDocumento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTipoDocumento" Type="Int32" />
+          <Property Name="numero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TipoDocumento" Relationship="Self.FK_Documento_TipoDocumento" FromRole="Documento" ToRole="TipoDocumento" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_Persona_Documento" FromRole="Documento" ToRole="Persona" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Usuario_Documento" FromRole="Documento" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="EstadoIngreso">
+          <Key>
+            <PropertyRef Name="idEstadoIngreso" />
+          </Key>
+          <Property Name="idEstadoIngreso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Ingreso" Relationship="Self.FK_Ingreso_EstadoIngreso" FromRole="EstadoIngreso" ToRole="Ingreso" />
+        </EntityType>
+        <EntityType Name="EstadoVenta">
+          <Key>
+            <PropertyRef Name="idEstadoVenta" />
+          </Key>
+          <Property Name="idEstadoVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Venta" Relationship="Self.FK_Venta_EstadoVenta" FromRole="EstadoVenta" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Ingreso">
+          <Key>
+            <PropertyRef Name="idIngreso" />
+          </Key>
+          <Property Name="idIngreso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idProveedor" Type="Int32" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="idComprobante" Type="Int32" />
+          <Property Name="fechaHora" Type="DateTime" Precision="3" />
+          <Property Name="impuesto" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="total" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="idEstadoIngreso" Type="Int32" />
+          <NavigationProperty Name="Comprobante" Relationship="Self.FK_Ingreso_Comprobante" FromRole="Ingreso" ToRole="Comprobante" />
+          <NavigationProperty Name="DetalleIngreso" Relationship="Self.FK_tbl_detalleIngreso_tbl_ingreso" FromRole="Ingreso" ToRole="DetalleIngreso" />
+          <NavigationProperty Name="EstadoIngreso" Relationship="Self.FK_Ingreso_EstadoIngreso" FromRole="Ingreso" ToRole="EstadoIngreso" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_tbl_ingreso_tbl_persona" FromRole="Ingreso" ToRole="Persona" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_tbl_ingreso_tbl_usuario" FromRole="Ingreso" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="idPersona" />
+          </Key>
+          <Property Name="idPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTipoPersona" Type="Int32" />
+          <Property Name="primerNombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="segundoNombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="primerApellido" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="segundoApellido" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="idDocumento" Type="Int32" />
+          <Property Name="direccion" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Documento" Relationship="Self.FK_Persona_Documento" FromRole="Persona" ToRole="Documento" />
+          <NavigationProperty Name="Ingreso" Relationship="Self.FK_tbl_ingreso_tbl_persona" FromRole="Persona" ToRole="Ingreso" />
+          <NavigationProperty Name="TipoPersona" Relationship="Self.FK_tbl_persona_tipoPersona" FromRole="Persona" ToRole="TipoPersona" />
+          <NavigationProperty Name="Venta" Relationship="Self.FK_tbl_venta_tbl_persona" FromRole="Persona" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="idRol" />
+          </Key>
+          <Property Name="idRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="condicion" Type="Boolean" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_tbl_usuario_tbl_rol" FromRole="Rol" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TipoComprobante">
+          <Key>
+            <PropertyRef Name="idTipoComprobante" />
+          </Key>
+          <Property Name="idTipoComprobante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Comprobante" Relationship="Self.FK_Comprobante_TipoComprobante" FromRole="TipoComprobante" ToRole="Comprobante" />
+        </EntityType>
+        <EntityType Name="TipoDocumento">
+          <Key>
+            <PropertyRef Name="idTipoDocumento" />
+          </Key>
+          <Property Name="idTipoDocumento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Documento" Relationship="Self.FK_Documento_TipoDocumento" FromRole="TipoDocumento" ToRole="Documento" />
+        </EntityType>
+        <EntityType Name="TipoPersona">
+          <Key>
+            <PropertyRef Name="idTipoPersona" />
+          </Key>
+          <Property Name="idTipoPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_tbl_persona_tipoPersona" FromRole="TipoPersona" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idRol" Type="Int32" />
+          <Property Name="primerNombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="segundoNombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="primerApellido" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="segundoApellido" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="idDocumento" Type="Int32" />
+          <Property Name="direccion" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="passwordHash" Type="Binary" MaxLength="1" FixedLength="false" />
+          <Property Name="passwordSal" Type="Binary" MaxLength="1" FixedLength="false" />
+          <Property Name="condicion" Type="Boolean" />
+          <NavigationProperty Name="Documento" Relationship="Self.FK_Usuario_Documento" FromRole="Usuario" ToRole="Documento" />
+          <NavigationProperty Name="Ingreso" Relationship="Self.FK_tbl_ingreso_tbl_usuario" FromRole="Usuario" ToRole="Ingreso" />
+          <NavigationProperty Name="Rol" Relationship="Self.FK_tbl_usuario_tbl_rol" FromRole="Usuario" ToRole="Rol" />
+          <NavigationProperty Name="Venta" Relationship="Self.FK_tbl_venta_tbl_usuario" FromRole="Usuario" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="idVenta" />
+          </Key>
+          <Property Name="idVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCliente" Type="Int32" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="idComprobante" Type="Int32" />
+          <Property Name="fechaHora" Type="DateTime" Precision="3" />
+          <Property Name="impuesto" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="total" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="idEstadoVenta" Type="Int32" />
+          <NavigationProperty Name="Comprobante" Relationship="Self.FK_Venta_Comprobante" FromRole="Venta" ToRole="Comprobante" />
+          <NavigationProperty Name="DetalleVenta" Relationship="Self.FK_tbl_detalleVenta_tbl_venta" FromRole="Venta" ToRole="DetalleVenta" />
+          <NavigationProperty Name="EstadoVenta" Relationship="Self.FK_Venta_EstadoVenta" FromRole="Venta" ToRole="EstadoVenta" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_tbl_venta_tbl_persona" FromRole="Venta" ToRole="Persona" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_tbl_venta_tbl_usuario" FromRole="Venta" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK_tbl_articulo_tbl_categoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="Articulo">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detalleIngreso_tbl_articulo">
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="0..1" />
+          <End Role="DetalleIngreso" Type="Self.DetalleIngreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articulo">
+              <PropertyRef Name="idArticulo" />
+            </Principal>
+            <Dependent Role="DetalleIngreso">
+              <PropertyRef Name="idArticulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detalleVenta_tbl_articulo">
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="0..1" />
+          <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articulo">
+              <PropertyRef Name="idArticulo" />
+            </Principal>
+            <Dependent Role="DetalleVenta">
+              <PropertyRef Name="idArticulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comprobante_TipoComprobante">
+          <End Role="TipoComprobante" Type="Self.TipoComprobante" Multiplicity="0..1" />
+          <End Role="Comprobante" Type="Self.Comprobante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoComprobante">
+              <PropertyRef Name="idTipoComprobante" />
+            </Principal>
+            <Dependent Role="Comprobante">
+              <PropertyRef Name="idTipoComprobante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ingreso_Comprobante">
+          <End Role="Comprobante" Type="Self.Comprobante" Multiplicity="0..1" />
+          <End Role="Ingreso" Type="Self.Ingreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comprobante">
+              <PropertyRef Name="idComprobante" />
+            </Principal>
+            <Dependent Role="Ingreso">
+              <PropertyRef Name="idComprobante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Venta_Comprobante">
+          <End Role="Comprobante" Type="Self.Comprobante" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comprobante">
+              <PropertyRef Name="idComprobante" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="idComprobante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detalleIngreso_tbl_ingreso">
+          <End Role="Ingreso" Type="Self.Ingreso" Multiplicity="0..1" />
+          <End Role="DetalleIngreso" Type="Self.DetalleIngreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingreso">
+              <PropertyRef Name="idIngreso" />
+            </Principal>
+            <Dependent Role="DetalleIngreso">
+              <PropertyRef Name="idIngreso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detalleVenta_tbl_venta">
+          <End Role="Venta" Type="Self.Venta" Multiplicity="0..1" />
+          <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="idVenta" />
+            </Principal>
+            <Dependent Role="DetalleVenta">
+              <PropertyRef Name="idVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Documento_TipoDocumento">
+          <End Role="TipoDocumento" Type="Self.TipoDocumento" Multiplicity="0..1" />
+          <End Role="Documento" Type="Self.Documento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDocumento">
+              <PropertyRef Name="idTipoDocumento" />
+            </Principal>
+            <Dependent Role="Documento">
+              <PropertyRef Name="idTipoDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_Documento">
+          <End Role="Documento" Type="Self.Documento" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documento">
+              <PropertyRef Name="idDocumento" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="idDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Documento">
+          <End Role="Documento" Type="Self.Documento" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documento">
+              <PropertyRef Name="idDocumento" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ingreso_EstadoIngreso">
+          <End Role="EstadoIngreso" Type="Self.EstadoIngreso" Multiplicity="0..1" />
+          <End Role="Ingreso" Type="Self.Ingreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoIngreso">
+              <PropertyRef Name="idEstadoIngreso" />
+            </Principal>
+            <Dependent Role="Ingreso">
+              <PropertyRef Name="idEstadoIngreso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Venta_EstadoVenta">
+          <End Role="EstadoVenta" Type="Self.EstadoVenta" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoVenta">
+              <PropertyRef Name="idEstadoVenta" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="idEstadoVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ingreso_tbl_persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Ingreso" Type="Self.Ingreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="idPersona" />
+            </Principal>
+            <Dependent Role="Ingreso">
+              <PropertyRef Name="idProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ingreso_tbl_usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Ingreso" Type="Self.Ingreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Ingreso">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_persona_tipoPersona">
+          <End Role="TipoPersona" Type="Self.TipoPersona" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPersona">
+              <PropertyRef Name="idTipoPersona" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="idTipoPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_venta_tbl_persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="idPersona" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_usuario_tbl_rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="idRol" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_venta_tbl_usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AnalisisDBCesarEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Articulo" EntityType="Self.Articulo" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+          <EntitySet Name="Comprobante" EntityType="Self.Comprobante" />
+          <EntitySet Name="DetalleIngreso" EntityType="Self.DetalleIngreso" />
+          <EntitySet Name="DetalleVenta" EntityType="Self.DetalleVenta" />
+          <EntitySet Name="Documento" EntityType="Self.Documento" />
+          <EntitySet Name="EstadoIngreso" EntityType="Self.EstadoIngreso" />
+          <EntitySet Name="EstadoVenta" EntityType="Self.EstadoVenta" />
+          <EntitySet Name="Ingreso" EntityType="Self.Ingreso" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TipoComprobante" EntityType="Self.TipoComprobante" />
+          <EntitySet Name="TipoDocumento" EntityType="Self.TipoDocumento" />
+          <EntitySet Name="TipoPersona" EntityType="Self.TipoPersona" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <EntitySet Name="Venta" EntityType="Self.Venta" />
+          <AssociationSet Name="FK_tbl_articulo_tbl_categoria" Association="Self.FK_tbl_articulo_tbl_categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Articulo" EntitySet="Articulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detalleIngreso_tbl_articulo" Association="Self.FK_tbl_detalleIngreso_tbl_articulo">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="DetalleIngreso" EntitySet="DetalleIngreso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detalleVenta_tbl_articulo" Association="Self.FK_tbl_detalleVenta_tbl_articulo">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comprobante_TipoComprobante" Association="Self.FK_Comprobante_TipoComprobante">
+            <End Role="TipoComprobante" EntitySet="TipoComprobante" />
+            <End Role="Comprobante" EntitySet="Comprobante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ingreso_Comprobante" Association="Self.FK_Ingreso_Comprobante">
+            <End Role="Comprobante" EntitySet="Comprobante" />
+            <End Role="Ingreso" EntitySet="Ingreso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Venta_Comprobante" Association="Self.FK_Venta_Comprobante">
+            <End Role="Comprobante" EntitySet="Comprobante" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detalleIngreso_tbl_ingreso" Association="Self.FK_tbl_detalleIngreso_tbl_ingreso">
+            <End Role="Ingreso" EntitySet="Ingreso" />
+            <End Role="DetalleIngreso" EntitySet="DetalleIngreso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detalleVenta_tbl_venta" Association="Self.FK_tbl_detalleVenta_tbl_venta">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Documento_TipoDocumento" Association="Self.FK_Documento_TipoDocumento">
+            <End Role="TipoDocumento" EntitySet="TipoDocumento" />
+            <End Role="Documento" EntitySet="Documento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_Documento" Association="Self.FK_Persona_Documento">
+            <End Role="Documento" EntitySet="Documento" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Documento" Association="Self.FK_Usuario_Documento">
+            <End Role="Documento" EntitySet="Documento" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ingreso_EstadoIngreso" Association="Self.FK_Ingreso_EstadoIngreso">
+            <End Role="EstadoIngreso" EntitySet="EstadoIngreso" />
+            <End Role="Ingreso" EntitySet="Ingreso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Venta_EstadoVenta" Association="Self.FK_Venta_EstadoVenta">
+            <End Role="EstadoVenta" EntitySet="EstadoVenta" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ingreso_tbl_persona" Association="Self.FK_tbl_ingreso_tbl_persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Ingreso" EntitySet="Ingreso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ingreso_tbl_usuario" Association="Self.FK_tbl_ingreso_tbl_usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Ingreso" EntitySet="Ingreso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_persona_tipoPersona" Association="Self.FK_tbl_persona_tipoPersona">
+            <End Role="TipoPersona" EntitySet="TipoPersona" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_venta_tbl_persona" Association="Self.FK_tbl_venta_tbl_persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_usuario_tbl_rol" Association="Self.FK_tbl_usuario_tbl_rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_venta_tbl_usuario" Association="Self.FK_tbl_venta_tbl_usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_delete_articulo">
+            <Parameter Name="idArticulo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_delete_categoria">
+            <Parameter Name="idCategoria" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_delete_rol">
+            <Parameter Name="idRol" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_delete_usuario">
+            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(AnalisisDBCesarModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(AnalisisDBCesarModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_insert_articulo">
+            <Parameter Name="idCategoria" Mode="In" Type="Int32" />
+            <Parameter Name="codigo" Mode="In" Type="String" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="precioVenta" Mode="In" Type="Decimal" />
+            <Parameter Name="stock" Mode="In" Type="Int32" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="condicion" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_insert_categoria">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="condicion" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_insert_detalleIngreso">
+            <Parameter Name="idIngreso" Mode="In" Type="Int32" />
+            <Parameter Name="idArticulo" Mode="In" Type="Int32" />
+            <Parameter Name="cantidad" Mode="In" Type="Int32" />
+            <Parameter Name="precioDetalle" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_insert_detalleVenta">
+            <Parameter Name="idVenta" Mode="In" Type="Int32" />
+            <Parameter Name="idArticulo" Mode="In" Type="Int32" />
+            <Parameter Name="cantidad" Mode="In" Type="Int32" />
+            <Parameter Name="precioDetalleVenta" Mode="In" Type="Decimal" />
+            <Parameter Name="descuento" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_insert_ingreso">
+            <Parameter Name="idProveedor" Mode="In" Type="Int32" />
+            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="tipoComprobante" Mode="In" Type="String" />
+            <Parameter Name="serieComprobante" Mode="In" Type="String" />
+            <Parameter Name="numComprobante" Mode="In" Type="String" />
+            <Parameter Name="fechaHora" Mode="In" Type="DateTime" />
+            <Parameter Name="impuesto" Mode="In" Type="Decimal" />
+            <Parameter Name="total" Mode="In" Type="Decimal" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_insert_persona">
+            <Parameter Name="tipoPersona" Mode="In" Type="String" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="tipoDocumento" Mode="In" Type="String" />
+            <Parameter Name="numDocumento" Mode="In" Type="String" />
+            <Parameter Name="direccion" Mode="In" Type="String" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_insert_rol">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="condicion" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_insert_usuario">
+            <Parameter Name="idRol" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="tipoDocumento" Mode="In" Type="String" />
+            <Parameter Name="numDocumento" Mode="In" Type="String" />
+            <Parameter Name="direccion" Mode="In" Type="String" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="passwordHash" Mode="In" Type="Binary" />
+            <Parameter Name="passwordSal" Mode="In" Type="Binary" />
+            <Parameter Name="condicion" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_insert_venta">
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
+            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="tipoComprobante" Mode="In" Type="String" />
+            <Parameter Name="serieComprobante" Mode="In" Type="String" />
+            <Parameter Name="numComprobante" Mode="In" Type="String" />
+            <Parameter Name="fechaHora" Mode="In" Type="DateTime" />
+            <Parameter Name="impuesto" Mode="In" Type="Decimal" />
+            <Parameter Name="total" Mode="In" Type="Decimal" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_read_articulo">
+            <Parameter Name="idArticulo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_read_categoria">
+            <Parameter Name="idcategoria" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_read_detalleIngreso">
+            <Parameter Name="idDetalleIngreso" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_read_detalleVenta">
+            <Parameter Name="idDetalleVenta" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_read_ingreso">
+            <Parameter Name="idIngreso" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_read_persona">
+            <Parameter Name="idPersona" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_read_rol">
+            <Parameter Name="idRol" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_read_usuario">
+            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_read_venta">
+            <Parameter Name="idVenta" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_update_articulo">
+            <Parameter Name="idArticulo" Mode="In" Type="Int32" />
+            <Parameter Name="idCategoria" Mode="In" Type="Int32" />
+            <Parameter Name="codigo" Mode="In" Type="String" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="precioVenta" Mode="In" Type="Decimal" />
+            <Parameter Name="stock" Mode="In" Type="Int32" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="condicion" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_update_categoria">
+            <Parameter Name="idCategoria" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="condicion" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_update_detalleIngreso">
+            <Parameter Name="idDetalleIngreso" Mode="In" Type="Int32" />
+            <Parameter Name="idIngreso" Mode="In" Type="Int32" />
+            <Parameter Name="idArticulo" Mode="In" Type="Int32" />
+            <Parameter Name="cantidad" Mode="In" Type="Int32" />
+            <Parameter Name="precioDetalle" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_update_detalleVenta">
+            <Parameter Name="idDetalleVenta" Mode="In" Type="Int32" />
+            <Parameter Name="idVenta" Mode="In" Type="Int32" />
+            <Parameter Name="idArticulo" Mode="In" Type="Int32" />
+            <Parameter Name="cantidad" Mode="In" Type="Int32" />
+            <Parameter Name="precioDetalleVenta" Mode="In" Type="Decimal" />
+            <Parameter Name="descuento" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_update_ingreso">
+            <Parameter Name="idIngreso" Mode="In" Type="Int32" />
+            <Parameter Name="idProveedor" Mode="In" Type="Int32" />
+            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="tipoComprobante" Mode="In" Type="String" />
+            <Parameter Name="serieComprobante" Mode="In" Type="String" />
+            <Parameter Name="numComprobante" Mode="In" Type="String" />
+            <Parameter Name="fechaHora" Mode="In" Type="DateTime" />
+            <Parameter Name="impuesto" Mode="In" Type="Decimal" />
+            <Parameter Name="total" Mode="In" Type="Decimal" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_update_persona">
+            <Parameter Name="idPersona" Mode="In" Type="Int32" />
+            <Parameter Name="tipoPersona" Mode="In" Type="String" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="tipoDocumento" Mode="In" Type="String" />
+            <Parameter Name="numDocumento" Mode="In" Type="String" />
+            <Parameter Name="direccion" Mode="In" Type="String" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_update_rol">
+            <Parameter Name="idRol" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="condicion" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_update_usuario">
+            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="idRol" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="tipoDocumento" Mode="In" Type="String" />
+            <Parameter Name="numDocumento" Mode="In" Type="String" />
+            <Parameter Name="direccion" Mode="In" Type="String" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="passwordHash" Mode="In" Type="Binary" />
+            <Parameter Name="passwordSal" Mode="In" Type="Binary" />
+            <Parameter Name="condicion" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_update_venta">
+            <Parameter Name="idVenta" Mode="In" Type="Int32" />
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
+            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="tipoComprobante" Mode="In" Type="String" />
+            <Parameter Name="serieComprobante" Mode="In" Type="String" />
+            <Parameter Name="numComprobante" Mode="In" Type="String" />
+            <Parameter Name="fechaHora" Mode="In" Type="DateTime" />
+            <Parameter Name="impuesto" Mode="In" Type="Decimal" />
+            <Parameter Name="total" Mode="In" Type="Decimal" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AnalisisDBCesarModelStoreContainer" CdmEntityContainer="AnalisisDBCesarEntities">
+          <EntitySetMapping Name="Articulo">
+            <EntityTypeMapping TypeName="AnalisisDBCesarModel.Articulo">
+              <MappingFragment StoreEntitySet="Articulo">
+                <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="condicion" ColumnName="condicion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="AnalisisDBCesarModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="condicion" ColumnName="condicion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comprobante">
+            <EntityTypeMapping TypeName="AnalisisDBCesarModel.Comprobante">
+              <MappingFragment StoreEntitySet="Comprobante">
+                <ScalarProperty Name="idComprobante" ColumnName="idComprobante" />
+                <ScalarProperty Name="idTipoComprobante" ColumnName="idTipoComprobante" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleIngreso">
+            <EntityTypeMapping TypeName="AnalisisDBCesarModel.DetalleIngreso">
+              <MappingFragment StoreEntitySet="DetalleIngreso">
+                <ScalarProperty Name="idDetalleIngreso" ColumnName="idDetalleIngreso" />
+                <ScalarProperty Name="idIngreso" ColumnName="idIngreso" />
+                <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleVenta">
+            <EntityTypeMapping TypeName="AnalisisDBCesarModel.DetalleVenta">
+              <MappingFragment StoreEntitySet="DetalleVenta">
+                <ScalarProperty Name="idDetalleVenta" ColumnName="idDetalleVenta" />
+                <ScalarProperty Name="idVenta" ColumnName="idVenta" />
+                <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="descuento" ColumnName="descuento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documento">
+            <EntityTypeMapping TypeName="AnalisisDBCesarModel.Documento">
+              <MappingFragment StoreEntitySet="Documento">
+                <ScalarProperty Name="idDocumento" ColumnName="idDocumento" />
+                <ScalarProperty Name="idTipoDocumento" ColumnName="idTipoDocumento" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstadoIngreso">
+            <EntityTypeMapping TypeName="AnalisisDBCesarModel.EstadoIngreso">
+              <MappingFragment StoreEntitySet="EstadoIngreso">
+                <ScalarProperty Name="idEstadoIngreso" ColumnName="idEstadoIngreso" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstadoVenta">
+            <EntityTypeMapping TypeName="AnalisisDBCesarModel.EstadoVenta">
+              <MappingFragment StoreEntitySet="EstadoVenta">
+                <ScalarProperty Name="idEstadoVenta" ColumnName="idEstadoVenta" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ingreso">
+            <EntityTypeMapping TypeName="AnalisisDBCesarModel.Ingreso">
+              <MappingFragment StoreEntitySet="Ingreso">
+                <ScalarProperty Name="idIngreso" ColumnName="idIngreso" />
+                <ScalarProperty Name="idProveedor" ColumnName="idProveedor" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idComprobante" ColumnName="idComprobante" />
+                <ScalarProperty Name="fechaHora" ColumnName="fechaHora" />
+                <ScalarProperty Name="impuesto" ColumnName="impuesto" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="idEstadoIngreso" ColumnName="idEstadoIngreso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persona">
+            <EntityTypeMapping TypeName="AnalisisDBCesarModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+                <ScalarProperty Name="idTipoPersona" ColumnName="idTipoPersona" />
+                <ScalarProperty Name="primerNombre" ColumnName="primerNombre" />
+                <ScalarProperty Name="segundoNombre" ColumnName="segundoNombre" />
+                <ScalarProperty Name="primerApellido" ColumnName="primerApellido" />
+                <ScalarProperty Name="segundoApellido" ColumnName="segundoApellido" />
+                <ScalarProperty Name="idDocumento" ColumnName="idDocumento" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="AnalisisDBCesarModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="condicion" ColumnName="condicion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="AnalisisDBCesarModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoComprobante">
+            <EntityTypeMapping TypeName="AnalisisDBCesarModel.TipoComprobante">
+              <MappingFragment StoreEntitySet="TipoComprobante">
+                <ScalarProperty Name="idTipoComprobante" ColumnName="idTipoComprobante" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoDocumento">
+            <EntityTypeMapping TypeName="AnalisisDBCesarModel.TipoDocumento">
+              <MappingFragment StoreEntitySet="TipoDocumento">
+                <ScalarProperty Name="idTipoDocumento" ColumnName="idTipoDocumento" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoPersona">
+            <EntityTypeMapping TypeName="AnalisisDBCesarModel.TipoPersona">
+              <MappingFragment StoreEntitySet="TipoPersona">
+                <ScalarProperty Name="idTipoPersona" ColumnName="idTipoPersona" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="AnalisisDBCesarModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="primerNombre" ColumnName="primerNombre" />
+                <ScalarProperty Name="segundoNombre" ColumnName="segundoNombre" />
+                <ScalarProperty Name="primerApellido" ColumnName="primerApellido" />
+                <ScalarProperty Name="segundoApellido" ColumnName="segundoApellido" />
+                <ScalarProperty Name="idDocumento" ColumnName="idDocumento" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="passwordHash" ColumnName="passwordHash" />
+                <ScalarProperty Name="passwordSal" ColumnName="passwordSal" />
+                <ScalarProperty Name="condicion" ColumnName="condicion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Venta">
+            <EntityTypeMapping TypeName="AnalisisDBCesarModel.Venta">
+              <MappingFragment StoreEntitySet="Venta">
+                <ScalarProperty Name="idVenta" ColumnName="idVenta" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idComprobante" ColumnName="idComprobante" />
+                <ScalarProperty Name="fechaHora" ColumnName="fechaHora" />
+                <ScalarProperty Name="impuesto" ColumnName="impuesto" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="idEstadoVenta" ColumnName="idEstadoVenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="AnalisisDBCesarModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="AnalisisDBCesarModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_delete_articulo" FunctionName="AnalisisDBCesarModel.Store.sp_delete_articulo" />
+          <FunctionImportMapping FunctionImportName="sp_delete_categoria" FunctionName="AnalisisDBCesarModel.Store.sp_delete_categoria" />
+          <FunctionImportMapping FunctionImportName="sp_delete_rol" FunctionName="AnalisisDBCesarModel.Store.sp_delete_rol" />
+          <FunctionImportMapping FunctionImportName="sp_delete_usuario" FunctionName="AnalisisDBCesarModel.Store.sp_delete_usuario" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="AnalisisDBCesarModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="AnalisisDBCesarModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AnalisisDBCesarModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="AnalisisDBCesarModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AnalisisDBCesarModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_insert_articulo" FunctionName="AnalisisDBCesarModel.Store.sp_insert_articulo" />
+          <FunctionImportMapping FunctionImportName="sp_insert_categoria" FunctionName="AnalisisDBCesarModel.Store.sp_insert_categoria" />
+          <FunctionImportMapping FunctionImportName="sp_insert_detalleIngreso" FunctionName="AnalisisDBCesarModel.Store.sp_insert_detalleIngreso" />
+          <FunctionImportMapping FunctionImportName="sp_insert_detalleVenta" FunctionName="AnalisisDBCesarModel.Store.sp_insert_detalleVenta" />
+          <FunctionImportMapping FunctionImportName="sp_insert_ingreso" FunctionName="AnalisisDBCesarModel.Store.sp_insert_ingreso" />
+          <FunctionImportMapping FunctionImportName="sp_insert_persona" FunctionName="AnalisisDBCesarModel.Store.sp_insert_persona" />
+          <FunctionImportMapping FunctionImportName="sp_insert_rol" FunctionName="AnalisisDBCesarModel.Store.sp_insert_rol" />
+          <FunctionImportMapping FunctionImportName="sp_insert_usuario" FunctionName="AnalisisDBCesarModel.Store.sp_insert_usuario" />
+          <FunctionImportMapping FunctionImportName="sp_insert_venta" FunctionName="AnalisisDBCesarModel.Store.sp_insert_venta" />
+          <FunctionImportMapping FunctionImportName="sp_read_articulo" FunctionName="AnalisisDBCesarModel.Store.sp_read_articulo" />
+          <FunctionImportMapping FunctionImportName="sp_read_categoria" FunctionName="AnalisisDBCesarModel.Store.sp_read_categoria" />
+          <FunctionImportMapping FunctionImportName="sp_read_detalleIngreso" FunctionName="AnalisisDBCesarModel.Store.sp_read_detalleIngreso" />
+          <FunctionImportMapping FunctionImportName="sp_read_detalleVenta" FunctionName="AnalisisDBCesarModel.Store.sp_read_detalleVenta" />
+          <FunctionImportMapping FunctionImportName="sp_read_ingreso" FunctionName="AnalisisDBCesarModel.Store.sp_read_ingreso" />
+          <FunctionImportMapping FunctionImportName="sp_read_persona" FunctionName="AnalisisDBCesarModel.Store.sp_read_persona" />
+          <FunctionImportMapping FunctionImportName="sp_read_rol" FunctionName="AnalisisDBCesarModel.Store.sp_read_rol" />
+          <FunctionImportMapping FunctionImportName="sp_read_usuario" FunctionName="AnalisisDBCesarModel.Store.sp_read_usuario" />
+          <FunctionImportMapping FunctionImportName="sp_read_venta" FunctionName="AnalisisDBCesarModel.Store.sp_read_venta" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="AnalisisDBCesarModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_update_articulo" FunctionName="AnalisisDBCesarModel.Store.sp_update_articulo" />
+          <FunctionImportMapping FunctionImportName="sp_update_categoria" FunctionName="AnalisisDBCesarModel.Store.sp_update_categoria" />
+          <FunctionImportMapping FunctionImportName="sp_update_detalleIngreso" FunctionName="AnalisisDBCesarModel.Store.sp_update_detalleIngreso" />
+          <FunctionImportMapping FunctionImportName="sp_update_detalleVenta" FunctionName="AnalisisDBCesarModel.Store.sp_update_detalleVenta" />
+          <FunctionImportMapping FunctionImportName="sp_update_ingreso" FunctionName="AnalisisDBCesarModel.Store.sp_update_ingreso" />
+          <FunctionImportMapping FunctionImportName="sp_update_persona" FunctionName="AnalisisDBCesarModel.Store.sp_update_persona" />
+          <FunctionImportMapping FunctionImportName="sp_update_rol" FunctionName="AnalisisDBCesarModel.Store.sp_update_rol" />
+          <FunctionImportMapping FunctionImportName="sp_update_usuario" FunctionName="AnalisisDBCesarModel.Store.sp_update_usuario" />
+          <FunctionImportMapping FunctionImportName="sp_update_venta" FunctionName="AnalisisDBCesarModel.Store.sp_update_venta" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="AnalisisDBCesarModel.Store.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

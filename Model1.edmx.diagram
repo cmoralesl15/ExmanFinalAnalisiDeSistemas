@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="84cae84f109e4a2f92beb4bb75a833ed" Name="Diagram1">
+        <EntityTypeShape EntityType="AnalisisDBCesarModel.Articulo" Width="1.5" PointX="13.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnalisisDBCesarModel.Categoria" Width="1.5" PointX="11.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnalisisDBCesarModel.Comprobante" Width="1.5" PointX="8.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnalisisDBCesarModel.DetalleIngreso" Width="1.5" PointX="15.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnalisisDBCesarModel.DetalleVenta" Width="1.5" PointX="18.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnalisisDBCesarModel.Documento" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnalisisDBCesarModel.EstadoIngreso" Width="1.5" PointX="8.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnalisisDBCesarModel.EstadoVenta" Width="1.5" PointX="11.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnalisisDBCesarModel.Ingreso" Width="1.5" PointX="10.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnalisisDBCesarModel.Persona" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnalisisDBCesarModel.Rol" Width="1.5" PointX="6" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnalisisDBCesarModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnalisisDBCesarModel.TipoComprobante" Width="1.5" PointX="6" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnalisisDBCesarModel.TipoDocumento" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnalisisDBCesarModel.TipoPersona" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnalisisDBCesarModel.Usuario" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnalisisDBCesarModel.Venta" Width="1.5" PointX="13.5" PointY="6.125" IsExpanded="true" />
+        <AssociationConnector Association="AnalisisDBCesarModel.FK_tbl_articulo_tbl_categoria" ManuallyRouted="false" />
+        <AssociationConnector Association="AnalisisDBCesarModel.FK_tbl_detalleIngreso_tbl_articulo" ManuallyRouted="false" />
+        <AssociationConnector Association="AnalisisDBCesarModel.FK_tbl_detalleVenta_tbl_articulo" ManuallyRouted="false" />
+        <AssociationConnector Association="AnalisisDBCesarModel.FK_Comprobante_TipoComprobante" ManuallyRouted="false" />
+        <AssociationConnector Association="AnalisisDBCesarModel.FK_Ingreso_Comprobante" ManuallyRouted="false" />
+        <AssociationConnector Association="AnalisisDBCesarModel.FK_Venta_Comprobante" ManuallyRouted="false" />
+        <AssociationConnector Association="AnalisisDBCesarModel.FK_tbl_detalleIngreso_tbl_ingreso" ManuallyRouted="false" />
+        <AssociationConnector Association="AnalisisDBCesarModel.FK_tbl_detalleVenta_tbl_venta" ManuallyRouted="false" />
+        <AssociationConnector Association="AnalisisDBCesarModel.FK_Documento_TipoDocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="AnalisisDBCesarModel.FK_Persona_Documento" ManuallyRouted="false" />
+        <AssociationConnector Association="AnalisisDBCesarModel.FK_Usuario_Documento" ManuallyRouted="false" />
+        <AssociationConnector Association="AnalisisDBCesarModel.FK_Ingreso_EstadoIngreso" ManuallyRouted="false" />
+        <AssociationConnector Association="AnalisisDBCesarModel.FK_Venta_EstadoVenta" ManuallyRouted="false" />
+        <AssociationConnector Association="AnalisisDBCesarModel.FK_tbl_ingreso_tbl_persona" ManuallyRouted="false" />
+        <AssociationConnector Association="AnalisisDBCesarModel.FK_tbl_ingreso_tbl_usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="AnalisisDBCesarModel.FK_tbl_persona_tipoPersona" ManuallyRouted="false" />
+        <AssociationConnector Association="AnalisisDBCesarModel.FK_tbl_venta_tbl_persona" ManuallyRouted="false" />
+        <AssociationConnector Association="AnalisisDBCesarModel.FK_tbl_usuario_tbl_rol" ManuallyRouted="false" />
+        <AssociationConnector Association="AnalisisDBCesarModel.FK_tbl_venta_tbl_usuario" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
